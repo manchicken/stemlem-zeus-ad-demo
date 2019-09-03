@@ -4,19 +4,11 @@ const { zeusLoader } = require("@zeus-technology/load");
 
 module.exports = function override(config, env) {
   console.log("OVERRIDING!!!");
-  const html = new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, "./public/index.html"),
-    inject: "head",
-    templateParameters: {
-      zeusTag: zeusLoader({ url: "https://test.zeustechnology.io" })
-    }
+  const currentHtml = config.plugins.find(x => x instanceof HtmlWebpackPlugin);
+
+  currentHtml.options.zeusTag = zeusLoader({
+    url: "https://test.zeus.aws.arc.pub/main.js"
   });
-  //do stuff with the webpack config...
-  if (config && config.hasOwnProperty("plugins")) {
-    config.plugins.push(html);
-  } else {
-    config.plugins = [html];
-  }
 
   return config;
 };
