@@ -1,4 +1,3 @@
-const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { zeusLoader } = require("@zeus-technology/load");
 
